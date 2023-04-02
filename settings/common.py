@@ -4,9 +4,10 @@ from __future__ import absolute_import, unicode_literals
 import datetime
 import os
 from os.path import dirname, join
-
+from dotenv import load_dotenv
 from django.utils.translation import ugettext_lazy as _
 
+load_dotenv()
 
 DEBUG = True
 # Build paths inside the project like this: os.path.join(ROOT_DIR, ...)
@@ -96,8 +97,8 @@ SOCIALACCOUNT_PROVIDERS = {
         # interpreted as verified.
         'VERIFIED_EMAIL': True,
         'APP': {
-            'client_id': 'enter your github client_id',
-            'secret': 'enter your github secret key',
+            'client_id': os.getenv('GITHUB_CLIENT_ID'),
+            'secret': os.getenv('GITHUB_SECRET'),
             'key': '',
         },
     },
@@ -110,8 +111,8 @@ SOCIALACCOUNT_PROVIDERS = {
             'email',  
         },
         'APP': {
-            'client_id': 'enter your google client_id',
-            'secret': 'enter your google secret key',
+            'client_id':  os.getenv('GOOGLE_CLIENT_ID'),
+            'secret': os.getenv('GOOGLE_SECRET'),
             'key': '',
         },
     }
@@ -156,8 +157,8 @@ LOGIN_REDIRECT_URL = "/"
 # E-Mail Settings
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = "smtp.gmail.com"
-EMAIL_HOST_USER = DEFAULT_FROM_EMAIL = (os.environ.get("EMAIL_HOST_USER", "enter gmail id"),)
-EMAIL_HOST_PASSWORD = (os.environ.get("EMAIL_HOST_PASSWORD", "enter App password"),) #turn on 2-step verification in your gmail account and add App password
+EMAIL_HOST_USER = DEFAULT_FROM_EMAIL = (os.environ.get("EMAIL_HOST_USER", os.getenv('GMAIL')),)
+EMAIL_HOST_PASSWORD = (os.environ.get("EMAIL_HOST_PASSWORD", os.getenv('APP_PASSWORD')),) #turn on 2-step verification in your gmail account and add App password
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 # DEFAULT_FROM_EMAIL = SITE_VARIABLES["site_name"] + " <noreply@pssi.org.in>"
@@ -217,9 +218,9 @@ MEDIA_URL = "/m/"
 DATABASES = {
         "default": {
         "ENGINE": "django.db.backends.postgresql_psycopg2",
-        "NAME": os.environ.get("DB_NAME", "enter postgres db name"),
+        "NAME": os.environ.get("DB_NAME", os.getenv('DB_NAME')),
         "USER": os.environ.get("DB_USER", "postgres"),
-        "PASSWORD": os.environ.get("DB_PASSWORD", "enter postgres password"),
+        "PASSWORD": os.environ.get("DB_PASSWORD", os.getenv('DB_PASSWORD')),
         "HOST": os.environ.get("DB_HOST", "localhost"),
         "PORT": os.environ.get("DB_PORT", "5432"),
     }
