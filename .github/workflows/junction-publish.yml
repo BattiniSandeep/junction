@@ -11,7 +11,7 @@ name: Junction
 on:
   push:
     branches:
-      - feature/upgrade-junction
+      - feature/*
 
 permissions:
   contents: read
