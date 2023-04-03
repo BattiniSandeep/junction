@@ -58,7 +58,7 @@ CORE_APPS = (
     "django.contrib.staticfiles",
     "django.contrib.sites",
 )
- 
+#
 THIRD_PARTY_APPS = (
     "allauth",
     "allauth.account",
