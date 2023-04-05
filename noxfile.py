@@ -30,6 +30,21 @@ def lint(session):
     session.run("pre-commit", "run", "--all-files")
 
 
+# @nox.session(python=["3.10"])
+# def test_coverage(session):
+#     # Install dependencies
+#     session.install("-r", "requirements.txt")
+#     session.install("-r", "tools/requirements-test.txt")
+#     session.run("pytest", "--cov", "-v", "--tb=native")
+#     session.run("coverage", "report", "-m")
+
+#     # Run tests with coverage
+#     session.run("coverage", "run", "--source", "myapp", "./manage.py", "test")
+
+#     # Generate coverage report
+#     session.run("coverage", "report", "--fail-under=80")
+
+
 @nox.session(python="3.5")
 def docs(session):
     session.install("-r", "tools/requirements-docs.txt")

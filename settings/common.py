@@ -218,9 +218,9 @@ MEDIA_URL = "/m/"
 DATABASES = {
         "default": {
         "ENGINE": "django.db.backends.postgresql_psycopg2",
-        "NAME": os.environ.get("DB_NAME", os.getenv('DB_NAME')),
+        "NAME": os.getenv('DB_NAME'),
         "USER": os.environ.get("DB_USER", "postgres"),
-        "PASSWORD": os.environ.get("DB_PASSWORD", os.getenv('DB_PASSWORD')),
+        "PASSWORD": os.getenv('DB_PASSWORD'),
         "HOST": os.environ.get("DB_HOST", "localhost"),
         "PORT": os.environ.get("DB_PORT", "5432"),
     }

@@ -6,7 +6,8 @@ services:
   - redis
 
 language: python
-python: 3.5
+# python: 3.5
+python: 3.10
 cache: pip
 
 # Use a two-stage approach, to minimize CI time on failures.
