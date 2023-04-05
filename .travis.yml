@@ -11,6 +11,9 @@ install:
   - pip install -r requirements.txt
   - pip install nox
   - pip install python-dotenv
+  - pip uninstall dotenv
+  - pip uninstall python-dotenv
+  - pip install python-dotenv
 
 script:
   - nox -s test
