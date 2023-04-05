@@ -4,10 +4,16 @@ import nox
 
 @nox.session(python=["3.9"])
 def test(session):
+    # session.install("-r", "requirements.txt")
+    # session.install("coverage")
+    # session.run("coverage", "run", "--source=.", "manage.py", "test")
+    # session.run("coverage", "report", "-m")
     session.install("-r", "requirements.txt")
-    session.install("coverage")
-    session.run("coverage", "run", "--source=.", "manage.py", "test")
+    session.install("-r", "tools/requirements-test.txt")
+
+    session.run("pytest", "--cov", "-v", "--tb=native")
     session.run("coverage", "report", "-m")
+    
 
     # Check coverage and fail if coverage is less than 80%
     coverage_output = session.run("coverage", "report")
@@ -43,11 +49,11 @@ def lint(session):
 
 # @nox.session(python=["2.7", "3.5", "3.6", "3.7", "3.8"])
 # def test(session):
-#     session.install("-r", "requirements.txt")
-#     session.install("-r", "tools/requirements-test.txt")
+    session.install("-r", "requirements.txt")
+    session.install("-r", "tools/requirements-test.txt")
 
-#     session.run("pytest", "--cov", "-v", "--tb=native")
-#     session.run("coverage", "report", "-m")
+    session.run("pytest", "--cov", "-v", "--tb=native")
+    session.run("coverage", "report", "-m")
 
 
 # @nox.session(python=["3.5", "3.6", "3.7", "3.8"])
