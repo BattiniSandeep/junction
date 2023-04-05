@@ -2,12 +2,27 @@
 """
 import nox
 
+@nox.session(python=["3.9"])
+def test(session):
+    session.install("-r", "requirements.txt")
+    session.install("coverage")
+    session.run("coverage", "run", "--source=.", "manage.py", "test")
+    session.run("coverage", "report", "-m")
+
+    # Check coverage and fail if coverage is less than 80%
+    coverage_output = session.run("coverage", "report")
+    coverage_percentage = coverage_output.splitlines()[-1].split()[3]
+    if float(coverage_percentage) < 80:
+        session.error(f"Coverage {coverage_percentage}% is less than 80%")
+
 @nox.session
 def lint(session):
     session.install("-r", "requirements.txt")
     session.run("flake8", "--max-line-length=88", ".")
     session.run("black", "--check", ".")
     session.run("isort", "--check-only", ".")
+
+
 
 # import nox
 
