@@ -8,11 +8,8 @@ branches:
 
 # Install dependencies
 install:
-  - pip install -r requirements.txt
+  - pip install -r requirements.txt || true
   - pip install nox
-  - pip install python-dotenv
-  - pip uninstall dotenv
-  - pip uninstall python-dotenv
   - pip install python-dotenv
 
 script:
