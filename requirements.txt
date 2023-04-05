@@ -4,6 +4,7 @@ djangorestframework==3.14.0
 django-filter==22.1
 python-dotenv
 
+
 # Persistent Store
 # -------------------------------------------------
 psycopg2-binary==2.9.5
