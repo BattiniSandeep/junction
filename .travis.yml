@@ -10,6 +10,7 @@ branches:
 install:
   - pip install -r requirements.txt
   - pip install nox
+  - pip install python-dotenv
 
 script:
   - nox -s test
