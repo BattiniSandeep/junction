@@ -1,68 +1,11 @@
-# System information
-os: linux
-addons:
-  postgresql: "12.2"
-services:
-  - redis
-
-
 language: python
-# python: 3.5
-python: 3.10
-cache: pip
+python:
+  - "3.10"
 
-# Use a two-stage approach, to minimize CI time on failures.
-stages:
-- primary
-- secondary
-
-branches:
-  only:
-    - feature/upgrade-junction
-
-env: DJANGO_SETTINGS_MODULE="settings.test_settings"
-
-jobs:
-  include:
-    # Basic Checks
-    - stage: primary
-      env: NOXSESSION=lint-3.5
-    - env: NOXSESSION=test-2.7
-    - env: NOXSESSION=test-3.5
-    - env: NOXSESSION=docs
-
-    - stage: secondary
-      env: NOXSESSION=test-3.6
-      python: 3.6
-    - env: NOXSESSION=test-3.7
-      python: 3.7
-
+# Install dependencies
 install:
-  # Enable Python 3.6.x, when python: 3.5 (because black is Py3.6+)
-  - |
-    if [ "${TRAVIS_PYTHON_VERSION}" == "3.5" ]; then
-      pyenv shell system:3.6.7
-    fi
+  - pip install -r requirements.txt
+  - pip install nox
 
-  # Get the latest pip
-  - python -m pip install --upgrade pip
-  # Reinstall pip, using the latest pip
-  - python -m pip install --force-reinstall pip
-
-  # Install the CI dependencies
-  - python -m pip install celery==3.1.20  # pin from requirements.txt
-  - python -m pip install Django==1.9  # pin from requirements.txt
-  - python -m pip install nox
-  - python -m pip install coveralls
-
-before_script:
-  - celery -A junction worker -l info --detach
 script:
-  - nox
-after_success:
-  - coveralls
-
-notifications:
-  email:
-    on_success: change  # [always|never|change]
-    on_failure: always  # [always|never|change]
+  - nox -s lint
