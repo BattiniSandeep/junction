@@ -2,5 +2,5 @@ factory-boy==2.11.1
 
 pytest-django==3.6
 pytest-cov==2.6.1
-
+mock
 coverage==5.0.4
