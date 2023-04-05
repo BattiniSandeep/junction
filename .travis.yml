@@ -5,6 +5,7 @@ addons:
 services:
   - redis
 
+
 language: python
 # python: 3.5
 python: 3.10
@@ -14,6 +15,10 @@ cache: pip
 stages:
 - primary
 - secondary
+
+branches:
+  only:
+    - feature/upgrade-junction
 
 env: DJANGO_SETTINGS_MODULE="settings.test_settings"
 
