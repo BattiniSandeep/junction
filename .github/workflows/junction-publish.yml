@@ -23,6 +23,11 @@ jobs:
       run: |
         pip install versiontools
         pip install -r requirements.txt
+    - name: Run tests and coverage
+      run: |
+        pip install -r tools/requirements-test.txt
+        pytest --cov -v --tb=native
+        coverage report -m
     # - name: Run test cases
     #   run: |
     #     pip install -r tools/requirements-test.txt
