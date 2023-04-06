@@ -21,25 +21,27 @@ jobs:
         python-version: '3.10'
     - name: Install verison tools
       run: |
+        pip install versiontools
         pip install -r requirements.txt
     # - name: Run test cases
-    #   run: | 
+    #   run: |
+    #     pip install -r tools/requirements-test.txt
     #     python manage.py test
     # - name: Coverage check
     #   run: |
     #     pip install coverage
     #     coverage run manage.py test
     #     coverage report
-    # - name: Django Coverage action
-    #   uses: actions/python-django-coverage-gitHub-action@0.9
-    #   with:
-    #     django-app: 'junction'
-    #     minimum-coverage: '80'
-    - name: Lint with flake8
-      continue-on-error: true
-      run: |
-        pip install flake8
-        flake8
+    - name: Django Coverage action
+      uses: actions/python-django-coverage-gitHub-action@0.9
+      with:
+        django-app: 'tests/integrations'
+        minimum-coverage: '80'
+    # - name: Lint with flake8
+    #   continue-on-error: true
+    #   run: |
+    #     pip install flake8
+    #     flake8
     # - name: Build and pUsh docker image
     #   run: |
     #     echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "Sandee246" --password-stdin
