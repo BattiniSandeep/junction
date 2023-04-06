@@ -37,7 +37,7 @@ jobs:
         pip install versiontools
         pip install -r requirements.txt
     # - name: Run test cases
-    #   run: |
+    #   run: | 
     #     python manage.py test
     # - name: Coverage check
     #   run: |
