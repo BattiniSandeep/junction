@@ -34,7 +34,7 @@ jobs:
     #     python manage.py test
     # - name: Coverage check
     #   run: |
-    #     pip install coverage
+    #     pip install coverag
     #     coverage run manage.py test
     #     coverage report
     # - name: Django Coverage action
