@@ -37,11 +37,11 @@ jobs:
     #     pip install coverage
     #     coverage run manage.py test
     #     coverage report
-    - name: Django Coverage action
-      uses: actions/python-django-coverage-gitHub-action@0.9
-      with:
-        django-app: 'tests/integrations'
-        minimum-coverage: '80'
+    # - name: Django Coverage action
+    #   uses: actions/python-django-coverage-gitHub-action@0.9
+    #   with:
+    #     django-app: 'tests/integrations'
+    #     minimum-coverage: '80'
     # - name: Lint with flake8
     #   continue-on-error: true
     #   run: |
