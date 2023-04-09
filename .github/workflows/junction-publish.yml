@@ -29,7 +29,7 @@ jobs:
         pytest --cov -v --tb=native
         coverage report -m
     # - name: Run test cases
-    #   run: |
+    #   run: | 
     #     pip install -r tools/requirements-test.txt
     #     python manage.py test
     # - name: Coverage check
